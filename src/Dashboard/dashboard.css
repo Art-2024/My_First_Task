@@ -1,0 +1,24 @@
+@media screen and (max-width: 640px) {
+  .dashImg {
+    width: 398px;
+    height: 300px;
+  }
+  .txt1 {
+    font-size: 2rem !important;
+  }
+}
+@media screen and (max-width: 400px) {
+  .dashImg {
+    width: 250px;
+    height: 150px;
+  }
+  .txt1 {
+    font-size: 1rem !important;
+  }
+}
+@media screen and (max-width: 200px) {
+  .dashImg {
+    width: 150px;
+    height: 50px;
+  }
+}

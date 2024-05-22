@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent, RenderResult } from "@testing-library/react";
-import Profile from "./index"; // Assuming Profile component is exported from Profile.js
+import Profile from "./index";
 import WeekDay from "./weekDay";
 
 describe("Profile Component", () => {
@@ -33,9 +33,8 @@ describe("Profile Component", () => {
   test("handleDateChange updates formValues for date picker", () => {
     const dateOfBirthPicker = component.getByLabelText("Date of birth");
 
-    // Simulate selecting a date
     const selectedDate = {
-      $d: new Date("2024-05-02"), // Adjust the date object according to your requirement
+      $d: new Date("2024-05-02"),
     };
 
     fireEvent.change(dateOfBirthPicker, { target: { value: selectedDate } });
@@ -43,6 +42,7 @@ describe("Profile Component", () => {
     expect((dateOfBirthPicker as HTMLInputElement).value).toBe(expectedValue);
   });
 });
+
 describe("WeekDay component", () => {
   test("renders with the correct day", () => {
     const { getByText } = render(<WeekDay day="Monday" />);
@@ -62,7 +62,7 @@ describe("WeekDay component", () => {
   test('removes a time range when the "x" button is clicked', () => {
     const { getByText, queryByTestId } = render(<WeekDay day="Monday" />);
     const addButton = getByText("+");
-    fireEvent.click(addButton); // Adds one time range
+    fireEvent.click(addButton);
     const removeButton = getByText("+").closest("div")!.querySelector("button");
     fireEvent.click(removeButton!);
     expect(queryByTestId("start-time-0")).not.toBeInTheDocument();

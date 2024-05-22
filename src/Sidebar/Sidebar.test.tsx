@@ -11,8 +11,7 @@ describe("MenuListComposition", () => {
       </Router>
     );
 
-    // Find the button using its ref
-    const menuButton = screen.getByTestId("menu-button"); // Assuming you set testId to 'menu-button' in your component
+    const menuButton = screen.getByTestId("menu-button");
     fireEvent.click(menuButton);
 
     const dashboardMenuItem = screen.getByRole("menuitem", {
@@ -30,15 +29,13 @@ describe("MenuListComposition", () => {
       </Router>
     );
 
-    // Open the menu by clicking the menu button
     const menuButton = screen.getByTestId("menu-button");
     fireEvent.click(menuButton);
 
-    // Find the profile menu item by its icon
-    const profileMenuItem = screen.getByTestId("profile-menu-item"); // Assuming you set testId to 'profile-menu-item' in your component
+    const profileMenuItem = screen.getByTestId("profile-menu-item");
+
     fireEvent.click(profileMenuItem);
 
-    // Verify navigation
     expect(window.location.pathname).toBe("/profile");
   });
 });

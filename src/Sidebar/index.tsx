@@ -55,6 +55,7 @@ const MenuListComposition: React.FC = () => {
         ref={anchorRef}
         onClick={handleToggle}
         sx={{ color: "white" }}
+        data-testid="menu-button"
       >
         <MenuIcon />
       </IconButton>
@@ -89,7 +90,10 @@ const MenuListComposition: React.FC = () => {
                   <DashBoardIcon />
                 </IconButton>
               </MenuItem>
-              <MenuItem onClick={handleProfileClick}>
+              <MenuItem
+                onClick={handleProfileClick}
+                data-testid="profile-menu-item"
+              >
                 <IconButton color="inherit">
                   <ProfileIcon />
                 </IconButton>

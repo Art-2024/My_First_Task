@@ -39,44 +39,60 @@ const WeekDay: React.FC<WeekDayProps> = ({ day }) => {
     }
     setTimeRanges(newTimeRanges);
   };
+
   return (
     <Box
       sx={{
         display: "flex",
         flexDirection: "column",
+        gap: "10px",
       }}
     >
       <Typography variant="h6" color={"#546E7B"} fontFamily={"sans-serif"}>
         {day}
       </Typography>
       <Box
-        style={{
+        sx={{
           maxHeight: timeRanges.length >= 4 ? "200px" : "auto",
           overflowY: "auto",
         }}
       >
         {timeRanges.map((range, index) => (
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <p style={{ margin: 0 }}> start/ end time </p>
-            <div key={index} style={{ display: "flex", width: "100%" }}>
+          <div
+            key={index}
+            style={{ display: "flex", flexDirection: "column", gap: "5px" }}
+          >
+            <Typography variant="body2" sx={{ margin: 0 }}>
+              Start / End Time
+            </Typography>
+            <div
+              key={index}
+              style={{ display: "flex", gap: "10px", alignItems: "center" }}
+            >
               <input
                 type="time"
+                id={`start-time-${index}`}
                 value={range.start || ""}
                 onChange={(e) => handleTimeChange(e.target.value, index, true)}
-                style={{ width: "60%" }}
+                style={{ width: "40%" }}
               />
-              <span> - </span>
+              <span>-</span>
               <input
+                id={`end-time-${index}`}
                 type="time"
                 value={range.end || ""}
                 onChange={(e) => handleTimeChange(e.target.value, index, false)}
-                style={{ width: "60%" }}
+                style={{ width: "40%" }}
               />
               <button onClick={() => removeTimeRange(index)}>x</button>
             </div>
           </div>
         ))}
-        <Button variant="text" sx={{ width: "70%" }} onClick={addTimeRange}>
+        <Button
+          variant="text"
+          sx={{ width: "70%", marginTop: "10px" }}
+          onClick={addTimeRange}
+        >
           +
         </Button>
       </Box>

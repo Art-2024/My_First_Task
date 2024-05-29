@@ -1,7 +1,7 @@
 import React from "react";
 import { render, fireEvent, RenderResult } from "@testing-library/react";
 import Profile from "./index";
-import WeekDay from "./weekDay";
+import WeeklySchedule from "../WeeklySchedule/index";
 
 describe("Profile Component", () => {
   let component: RenderResult;
@@ -45,12 +45,12 @@ describe("Profile Component", () => {
 
 describe("WeekDay component", () => {
   test("renders with the correct day", () => {
-    const { getByText } = render(<WeekDay day="Monday" />);
+    const { getByText } = render(<WeeklySchedule day="Monday" />);
     expect(getByText("Monday")).toBeInTheDocument();
   });
 
   test('adds a new time range when the "+" button is clicked', () => {
-    const { getByText, container } = render(<WeekDay day="Monday" />);
+    const { getByText, container } = render(<WeeklySchedule day="Monday" />);
     const addButton = getByText("+");
     fireEvent.click(addButton);
     const startTimeInput = container.querySelector(`input[id^="start-time-"]`);
@@ -60,7 +60,9 @@ describe("WeekDay component", () => {
   });
 
   test('removes a time range when the "x" button is clicked', () => {
-    const { getByText, queryByTestId } = render(<WeekDay day="Monday" />);
+    const { getByText, queryByTestId } = render(
+      <WeeklySchedule day="Monday" />
+    );
     const addButton = getByText("+");
     fireEvent.click(addButton);
     const removeButton = getByText("+").closest("div")!.querySelector("button");
@@ -70,7 +72,7 @@ describe("WeekDay component", () => {
   });
 
   test("updates the start time when a time input is changed", () => {
-    const { container } = render(<WeekDay day="Monday" />);
+    const { container } = render(<WeeklySchedule day="Monday" />);
     const startTimeInput = container.querySelector(
       'input[type="time"]'
     ) as HTMLInputElement;
@@ -79,7 +81,7 @@ describe("WeekDay component", () => {
   });
 
   test("updates the end time when a time input is changed", () => {
-    const { container } = render(<WeekDay day="Monday" />);
+    const { container } = render(<WeeklySchedule day="Monday" />);
     const endTimeInput = container.querySelectorAll(
       'input[type="time"]'
     )[1] as HTMLInputElement;

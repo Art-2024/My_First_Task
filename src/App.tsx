@@ -1,14 +1,12 @@
 import React from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { CssBaseline, Box } from "@mui/material";
-import MenuListComposition from "./Sidebar";
 import { BrowserRouter as Router, useLocation } from "react-router-dom";
 import { Route, Routes } from "react-router-dom";
-import Dashboard from "./Dashboard";
-import Profile from "./Profile";
-import { Provider } from "react-redux";
-// import store from "./redux/store";
-import Login from "./Login";
+import Dashboard from "./components/Dashboard";
+import Profile from "./components/Profile";
+import Login from "./components/Login";
+import Sidebar from "./components/layouts/Sidebar";
 
 const theme = createTheme();
 
@@ -32,7 +30,7 @@ function AppLayout() {
 
   return (
     <Box sx={{ display: "flex", height: "100vh" }}>
-      {showSidebar && <MenuListComposition />}
+      {showSidebar && <Sidebar />}
       <Routes>
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/profile" element={<Profile />} />

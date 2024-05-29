@@ -1,8 +1,13 @@
 import React from "react";
-import { ReactComponent as DashboardImage } from "../assets/image 1.svg";
-import { Button, Container, Typography } from "@mui/material";
+import { ReactComponent as DashboardImage } from "../../assets/dashboard.svg";
+import { Container, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import "./dashboard.css";
+import PrimaryButton from "../buttons/PrimaryButton";
+import SecondaryButton from "../buttons/SecondaryButton";
+import { COLORS } from "../../constants";
+
+const { DarkMidnightBlue } = COLORS;
 
 const Dashboard: React.FC = () => {
   const navigate = useNavigate();
@@ -26,25 +31,16 @@ const Dashboard: React.FC = () => {
       <Typography
         className="txt1"
         variant="h3"
-        color={"#003367"}
+        color={DarkMidnightBlue}
         fontFamily={"sans-serif"}
       >
         COMMING SOON
       </Typography>
-      <Button
-        variant="contained"
-        sx={{ backgroundColor: "#003367" }}
+      <PrimaryButton
         onClick={handleProfile}
-      >
-        EDIT MY PROFILE AND MY WORKLOG
-      </Button>
-      <Button
-        onClick={handleLogout}
-        variant="text"
-        sx={{ color: "#003367", fontSize: 18 }}
-      >
-        LOGOUT
-      </Button>
+        text="EDIT MY PROFILE AND MY WORKLOG"
+      />
+      <SecondaryButton onClick={handleLogout} text="LOGOUT" />
     </Container>
   );
 };

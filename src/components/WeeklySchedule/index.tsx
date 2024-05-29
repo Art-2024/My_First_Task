@@ -1,5 +1,6 @@
 import { Box, Typography, Button } from "@mui/material";
 import React, { useState } from "react";
+import { Flex, FlexColumn } from "../styled/styled";
 
 interface TimeRange {
   start: string | null;
@@ -10,7 +11,7 @@ interface WeekDayProps {
   day: string;
 }
 
-const WeekDay: React.FC<WeekDayProps> = ({ day }) => {
+const WeeklySchedule: React.FC<WeekDayProps> = ({ day }) => {
   const [timeRanges, setTimeRanges] = useState<TimeRange[]>([
     { start: null, end: null },
   ]);
@@ -41,13 +42,7 @@ const WeekDay: React.FC<WeekDayProps> = ({ day }) => {
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "10px",
-      }}
-    >
+    <FlexColumn sx={{ gap: "10px" }}>
       <Typography variant="h6" color={"#546E7B"} fontFamily={"sans-serif"}>
         {day}
       </Typography>
@@ -58,17 +53,11 @@ const WeekDay: React.FC<WeekDayProps> = ({ day }) => {
         }}
       >
         {timeRanges.map((range, index) => (
-          <div
-            key={index}
-            style={{ display: "flex", flexDirection: "column", gap: "5px" }}
-          >
+          <FlexColumn key={index} sx={{ gap: "5px" }}>
             <Typography variant="body2" sx={{ margin: 0 }}>
               Start / End Time
             </Typography>
-            <div
-              key={index}
-              style={{ display: "flex", gap: "10px", alignItems: "center" }}
-            >
+            <Flex key={index} sx={{ gap: "10px", alignItems: "center" }}>
               <input
                 type="time"
                 id={`start-time-${index}`}
@@ -85,8 +74,8 @@ const WeekDay: React.FC<WeekDayProps> = ({ day }) => {
                 style={{ width: "40%" }}
               />
               <button onClick={() => removeTimeRange(index)}>x</button>
-            </div>
-          </div>
+            </Flex>
+          </FlexColumn>
         ))}
         <Button
           variant="text"
@@ -96,8 +85,8 @@ const WeekDay: React.FC<WeekDayProps> = ({ day }) => {
           +
         </Button>
       </Box>
-    </Box>
+    </FlexColumn>
   );
 };
 
-export default WeekDay;
+export default WeeklySchedule;

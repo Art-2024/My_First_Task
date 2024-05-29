@@ -4,11 +4,11 @@ import MenuList from "@mui/material/MenuList";
 import { Grow, IconButton, Popper } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useNavigate } from "react-router-dom";
-import { ReactComponent as DashBoardIcon } from "../assets/dashboard_24px.svg";
-import { ReactComponent as ProfileIcon } from "../assets/perm_contact_calendar_24px.svg";
+import { ReactComponent as DashBoardIcon } from "../../../assets/dashboard_24px.svg";
+import { ReactComponent as ProfileIcon } from "../../../assets/profile.svg";
 import { Box } from "@mui/system";
 
-const MenuListComposition: React.FC = () => {
+const Sidebar: React.FC = () => {
   const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef<HTMLButtonElement>(null);
@@ -106,4 +106,4 @@ const MenuListComposition: React.FC = () => {
   );
 };
 
-export default MenuListComposition;
+export default Sidebar;

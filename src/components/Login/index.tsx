@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Container, Typography, Alert } from "@mui/material";
 import { ReactComponent as LoginImage } from "../../assets/login.svg";
 import "./login.css";
@@ -18,6 +18,12 @@ const Login: React.FC = () => {
   const [showVector, setShowVector] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
+  useEffect(() => {
+    if (code) {
+      setShowVector(true);
+    }
+  }, [code]);
+
   const handleEmailSubmit = () => {
     if (email === "demo@demo.com") {
       setShowCodeInput(true);
@@ -27,9 +33,8 @@ const Login: React.FC = () => {
     }
   };
 
-  const handleSubmit = (event: { preventDefault: () => void }) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
     if (email === "demo@demo.com" && code === "111111") {
       navigate("/dashboard");
     } else {
@@ -37,15 +42,12 @@ const Login: React.FC = () => {
     }
   };
 
-  const handleEmailChange = (event: {
-    target: { value: React.SetStateAction<string> };
-  }) => {
+  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
   };
 
-  const handleCodeChange = (value: React.SetStateAction<string>) => {
+  const handleCodeChange = (value: string) => {
     setCode(value);
-    setShowVector(true);
   };
 
   return (
@@ -63,7 +65,7 @@ const Login: React.FC = () => {
           className="txt"
           variant="h1"
           color={DarkMidnightBlue}
-          fontFamily={"sans-serif"}
+          fontFamily="sans-serif"
           mb={2}
         >
           PLAYGROUND
@@ -76,7 +78,7 @@ const Login: React.FC = () => {
             className="txt1"
             variant="h4"
             color={DarkMidnightBlue}
-            fontFamily={"sans-serif"}
+            fontFamily="sans-serif"
           >
             Login
           </Typography>

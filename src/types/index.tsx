@@ -13,11 +13,7 @@ export interface InputTypes {
 export interface LoginFormProps {
   showCodeInput: boolean;
   email: string;
-  handleEmailChange: (event: {
-    target: {
-      value: React.SetStateAction<string>;
-    };
-  }) => void;
+  handleEmailChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleEmailSubmit: () => void;
   code: string;
   handleCodeChange: (value: string) => void;

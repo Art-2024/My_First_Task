@@ -1,10 +1,12 @@
 import React from "react";
-import { FlexColumn, Flex, OtpInput } from "../../components/styled/styled";
+import { FlexColumn, Flex } from "../../components/styled/styled";
 import { TextField, IconButton, Typography, Alert } from "@mui/material";
 import PrimaryButton from "../../components/buttons/PrimaryButton";
 import { COLORS, validateCode, validateEmail } from "../../constants";
 import { ReactComponent as DeleteIcon } from "../../assets/delete.svg";
 import { Field } from "react-final-form";
+import { MuiOtpInput } from "mui-one-time-password-input";
+import "./OtpInput.css";
 
 const { DarkMidnightBlue } = COLORS;
 
@@ -51,7 +53,8 @@ const CodeInput: React.FC<{
       {({ input, meta }) => (
         <>
           <Flex className="code">
-            <OtpInput
+            <MuiOtpInput
+              className="Otp"
               length={6}
               value={input.value}
               onChange={(newValue) => {

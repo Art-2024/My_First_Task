@@ -1,15 +1,7 @@
 import { Box, Typography, Button } from "@mui/material";
 import React, { useState } from "react";
 import { Flex, FlexColumn } from "../styled/styled";
-
-interface TimeRange {
-  start: string | null;
-  end: string | null;
-}
-
-interface WeekDayProps {
-  day: string;
-}
+import { TimeRange, WeekDayProps } from "../../types";
 
 const WeeklySchedule: React.FC<WeekDayProps> = ({ day }) => {
   const [timeRanges, setTimeRanges] = useState<TimeRange[]>([

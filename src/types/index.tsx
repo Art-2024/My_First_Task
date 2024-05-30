@@ -27,3 +27,12 @@ export interface LoginVal {
   email: string;
   code: string;
 }
+
+export interface TimeRange {
+  start: string | null;
+  end: string | null;
+}
+
+export interface WeekDayProps {
+  day: string;
+}

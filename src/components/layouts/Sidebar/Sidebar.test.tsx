@@ -1,13 +1,13 @@
 import React from "react";
 import { render, fireEvent, screen } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
-import MenuListComposition from "./index";
+import Sidebar from "./index";
 
-describe("MenuListComposition", () => {
+describe("Sidebar", () => {
   test("clicking on dashboard menu item navigates to /dashboard", () => {
     render(
       <Router>
-        <MenuListComposition />
+        <Sidebar />
       </Router>
     );
 
@@ -25,7 +25,7 @@ describe("MenuListComposition", () => {
   test("clicking on profile menu item navigates to /profile", () => {
     render(
       <Router>
-        <MenuListComposition />
+        <Sidebar />
       </Router>
     );
 

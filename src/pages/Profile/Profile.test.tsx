@@ -1,7 +1,7 @@
 import React from "react";
 import { render, fireEvent, RenderResult } from "@testing-library/react";
 import Profile from "./index";
-import WeeklySchedule from "../../WeeklySchedule/index";
+import WeeklySchedule from "../../components/WeeklySchedule/index";
 
 describe("Profile Component", () => {
   let component: RenderResult;

@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Box, Container, Typography, Alert } from "@mui/material";
 import { ReactComponent as LoginImage } from "../../assets/login.svg";
 import "./login.css";
-import PrimaryButton from "../../buttons/PrimaryButton";
-import { COLORS, LoginValues } from "../../../constants";
+import PrimaryButton from "../../components/buttons/PrimaryButton";
+import { COLORS, LoginValues } from "../../constants";
 import { useNavigate } from "react-router-dom";
-import { Flex, FlexColumn, Label } from "../../styled/styled";
+import { Flex, FlexColumn, Label } from "../../components/styled/styled";
 import Otp from "../OtpInput";
 import { Form } from "react-final-form";
-import { LoginVal } from "../../../types";
+import { LoginVal } from "../../types";
 
 const { DarkMidnightBlue } = COLORS;
 

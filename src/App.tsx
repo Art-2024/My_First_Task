@@ -3,9 +3,9 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { CssBaseline, Box } from "@mui/material";
 import { BrowserRouter as Router, useLocation } from "react-router-dom";
 import { Route, Routes } from "react-router-dom";
-import Dashboard from "./components/pages/Dashboard";
-import Profile from "./components/pages/Profile";
-import Login from "./components/pages/Login";
+import Dashboard from "./pages/Dashboard";
+import Profile from "./pages/Profile";
+import Login from "./pages/Login";
 import Sidebar from "./components/layouts/Sidebar";
 
 const theme = createTheme();

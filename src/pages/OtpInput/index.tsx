@@ -1,8 +1,8 @@
 import React from "react";
-import { FlexColumn, Flex, OtpInput } from "../../styled/styled";
+import { FlexColumn, Flex, OtpInput } from "../../components/styled/styled";
 import { TextField, IconButton, Typography, Alert } from "@mui/material";
-import PrimaryButton from "../../buttons/PrimaryButton";
-import { COLORS, validateCode, validateEmail } from "../../../constants";
+import PrimaryButton from "../../components/buttons/PrimaryButton";
+import { COLORS, validateCode, validateEmail } from "../../constants";
 import { ReactComponent as DeleteIcon } from "../../assets/delete.svg";
 import { Field } from "react-final-form";
 

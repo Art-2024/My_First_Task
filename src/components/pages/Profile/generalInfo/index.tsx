@@ -8,12 +8,12 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import TextFields from "../../inputs/Textfield";
+import TextFields from "../../../inputs/Textfield";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { ReactComponent as SlackIcon } from "../../../assets/slack.svg";
 import { ReactComponent as GithubIcon } from "../../../assets/github.svg";
-import { COLORS, FormValues } from "../../../constants";
+import { COLORS, FormValues } from "../../../../constants";
 
 const { DarkMidnightBlue } = COLORS;
 

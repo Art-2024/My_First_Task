@@ -3,9 +3,9 @@ import { ReactComponent as DashboardImage } from "../../assets/dashboard.svg";
 import { Container, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import "./dashboard.css";
-import PrimaryButton from "../buttons/PrimaryButton";
-import SecondaryButton from "../buttons/SecondaryButton";
-import { COLORS } from "../../constants";
+import PrimaryButton from "../../buttons/PrimaryButton";
+import SecondaryButton from "../../buttons/SecondaryButton";
+import { COLORS } from "../../../constants";
 
 const { DarkMidnightBlue } = COLORS;
 

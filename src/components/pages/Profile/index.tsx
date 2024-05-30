@@ -1,9 +1,9 @@
 import React from "react";
 import { Container, Typography } from "@mui/material";
-import WeeklySchedule from "../WeeklySchedule";
+import WeeklySchedule from "../../WeeklySchedule";
 import GeneralInfo from "./generalInfo";
-import { Flex, FlexColumn } from "../styled/styled";
-import { COLORS } from "../../constants";
+import { Flex, FlexColumn } from "../../styled/styled";
+import { COLORS } from "../../../constants";
 
 const { DarkMidnightBlue } = COLORS;
 

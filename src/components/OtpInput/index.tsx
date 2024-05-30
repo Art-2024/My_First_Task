@@ -1,121 +1,127 @@
 import React from "react";
 import { FlexColumn, Flex, OtpInput } from "../styled/styled";
-import { TextField, IconButton, Typography } from "@mui/material";
+import { TextField, IconButton, Typography, Alert } from "@mui/material";
 import PrimaryButton from "../buttons/PrimaryButton";
-import { COLORS } from "../../constants";
+import { COLORS, validateCode, validateEmail } from "../../constants";
 import { ReactComponent as DeleteIcon } from "../../assets/delete.svg";
-import { LoginFormProps } from "../../types";
+import { Field } from "react-final-form";
 
 const { DarkMidnightBlue } = COLORS;
 
 const EmailInput: React.FC<{
-  email: string;
-  handleEmailChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  showCodeInput: boolean;
   handleEmailSubmit: () => void;
-}> = ({ email, handleEmailChange, handleEmailSubmit }) => (
+}> = ({ showCodeInput, handleEmailSubmit }) => (
   <FlexColumn sx={{ alignItems: "start" }}>
-    <TextField
-      id="standard-basic"
-      className="email"
-      label="Enter your email"
-      variant="standard"
-      value={email}
-      onChange={handleEmailChange}
-      required
-      autoComplete="email"
-    />
-    <Flex
-      sx={{
-        width: "100%",
-        justifyContent: "end",
-      }}
-    >
+    <Field name="email" validate={validateEmail}>
+      {({ input, meta }) => (
+        <>
+          <TextField
+            {...input}
+            id="standard-basic"
+            className="email"
+            label="Enter your email"
+            variant="standard"
+            required
+            autoComplete="email"
+          />
+          {meta.error && meta.touched && (
+            <Alert severity="error">{meta.error}</Alert>
+          )}
+        </>
+      )}
+    </Field>
+    <Flex sx={{ width: "100%", justifyContent: "end" }}>
       <PrimaryButton onClick={handleEmailSubmit} text="Send Code" />
     </Flex>
   </FlexColumn>
 );
 
 const CodeInput: React.FC<{
-  code: string;
-  handleCodeChange: (value: string) => void;
   showVector: boolean;
-  setCode: React.Dispatch<React.SetStateAction<string>>;
   setShowVector: React.Dispatch<React.SetStateAction<boolean>>;
-  errorMessage: string;
-}> = ({
-  code,
-  handleCodeChange,
-  showVector,
-  setCode,
-  setShowVector,
-  errorMessage,
-}) => (
+  setErrorMessage: React.Dispatch<React.SetStateAction<string>>;
+}> = ({ showVector, setShowVector, setErrorMessage }) => (
   <div className="form-group">
     <Typography variant="body1">
       To finalize your verification, please enter the code that <br />
       has been sent to your email address / SMS
     </Typography>
-    <Flex className="code">
-      <OtpInput
-        length={6}
-        value={code}
-        onChange={handleCodeChange}
-        sx={{
-          "& .MuiInputBase-root": {
-            borderBottom: `1px solid ${
-              errorMessage ? "red" : DarkMidnightBlue
-            }`,
-          },
-          "& .MuiInputBase-input": {
-            borderBottom: `1px solid ${
-              errorMessage ? "red" : DarkMidnightBlue
-            } !important`,
-          },
-        }}
-      />
-      {showVector && (
-        <IconButton
-          onClick={() => {
-            setCode("");
-            setShowVector(false);
-          }}
-          color="inherit"
-        >
-          <DeleteIcon />
-        </IconButton>
+    <Field name="code" validate={validateCode}>
+      {({ input, meta }) => (
+        <>
+          <Flex className="code">
+            <OtpInput
+              length={6}
+              value={input.value}
+              onChange={(newValue) => {
+                input.onChange(newValue);
+                if (newValue.length === 6) {
+                  setShowVector(false);
+                } else {
+                  setShowVector(true);
+                }
+              }}
+              sx={{
+                "& .MuiInputBase-root": {
+                  borderBottom: `1px solid ${
+                    meta.submitFailed ? "red" : DarkMidnightBlue
+                  }`,
+                },
+                "& .MuiInputBase-input": {
+                  borderBottom: `1px solid ${
+                    meta.submitFailed ? "red" : DarkMidnightBlue
+                  } !important`,
+                },
+              }}
+            />
+            {showVector && (
+              <IconButton
+                onClick={() => {
+                  input.onChange("");
+                  setShowVector(false);
+                  setErrorMessage("");
+                }}
+                color="inherit"
+              >
+                <DeleteIcon />
+              </IconButton>
+            )}
+          </Flex>
+          {(meta.error || meta.submitError) && meta.touched && (
+            <Alert severity="error">{meta.error || meta.submitError}</Alert>
+          )}
+        </>
       )}
-    </Flex>
+    </Field>
   </div>
 );
 
-const Otp: React.FC<LoginFormProps> = ({
+const Otp: React.FC<{
+  showCodeInput: boolean;
+  handleEmailSubmit: () => void;
+  showVector: boolean;
+  setShowVector: React.Dispatch<React.SetStateAction<boolean>>;
+  setErrorMessage: React.Dispatch<React.SetStateAction<string>>;
+}> = ({
   showCodeInput,
-  email,
-  handleEmailChange,
   handleEmailSubmit,
-  code,
-  handleCodeChange,
   showVector,
-  errorMessage,
-  setCode,
   setShowVector,
+  setErrorMessage,
 }) => {
   return (
     <>
       {!showCodeInput ? (
         <EmailInput
-          email={email}
-          handleEmailChange={handleEmailChange}
+          showCodeInput={showCodeInput}
           handleEmailSubmit={handleEmailSubmit}
         />
       ) : (
         <CodeInput
-          code={code}
-          handleCodeChange={handleCodeChange}
           showVector={showVector}
-          setCode={setCode}
           setShowVector={setShowVector}
-          errorMessage={errorMessage}
+          setErrorMessage={setErrorMessage}
         />
       )}
     </>

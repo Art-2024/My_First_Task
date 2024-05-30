@@ -16,3 +16,24 @@ export const FormValues = {
   slackUsername: "",
   githubUsername: "",
 };
+
+export const LoginValues = {
+  email: "demo@demo.com",
+  code: "111111",
+};
+
+export const validateEmail = (value: string) => {
+  if (!value) {
+    return "Email is required";
+  } else if (value !== LoginValues.email) {
+    return "Invalid email address";
+  }
+};
+
+export const validateCode = (value: string) => {
+  if (!value) {
+    return "Code is required";
+  } else if (value.length !== 6) {
+    return "Code must be 6 digits long";
+  }
+};

@@ -22,3 +22,8 @@ export interface LoginFormProps {
   setCode: (value: React.SetStateAction<string>) => void;
   setShowVector: (value: React.SetStateAction<boolean>) => void;
 }
+
+export interface LoginVal {
+  email: string;
+  code: string;
+}
